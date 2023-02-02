@@ -1,46 +1,46 @@
 from flask import Flask, request, render_template
-import os
 import json
+import os
 
 app = Flask(__name__)
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route("/")
+def index():
+    return "Welcome to the Flask app!"
+
+@app.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == 'POST':
-        identifier = request.form['identifier']
-        hex_key = request.form['hex_key']
+    if request.method == "POST":
+        identifier = request.form.get("identifier")
+        hex_key = request.form.get("hex_key")
 
-        filename = ".well-known/nostr.json"
-        if os.path.exists(filename):
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-                names = data["names"]
-                names[identifier] = hex_key
-                with open(filename, "w") as json_file:
-                    json.dump(data, json_file, indent=4)
-        else:
-            with open(filename, "w") as json_file:
-                data = {"names": {}}
+        nostr_file = os.path.join(".well-known", "nostr.json")
+        if os.path.exists(nostr_file):
+            with open(nostr_file, "r") as f:
+                data = json.load(f)
                 data["names"][identifier] = hex_key
-                json.dump(data, json_file, indent=4)
-        
-        if os.path.exists(filename):
-            return "Success: The file was created successfully and the data was appended successfully."
         else:
-            return "Error: The file was not created successfully."
-    
-    return render_template('register.html')
+            data = {"names": {identifier: hex_key}}
 
-@app.route('/display')
+        with open(nostr_file, "w") as f:
+            json.dump(data, f, indent=4)
+
+        return display()
+
+    return render_template("register.html")
+
+@app.route("/display")
 def display():
-    filename = ".well-known/nostr.json"
-    if os.path.exists(filename):
-        with open(filename, "r") as json_file:
-            data = json.load(json_file)
-            names = data["names"]
-            return render_template('display.html', names=names)
+    nostr_file = os.path.join(".well-known", "nostr.json")
+    if os.path.exists(nostr_file):
+        with open(nostr_file, "r") as f:
+            data = json.load(f)
+            content = ""
+            for identifier, hex_key in data["names"].items():
+                content += f"{identifier}: {hex_key}<br>"
+            return content
     else:
-        return "Error: The file was not found."
+        return "nostr.json file not found!"
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
