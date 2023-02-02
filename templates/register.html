@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Register Identifier and Hex Key</title>
-    <style>
-      form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 50px;
-      }
-    </style>
+    <title>Registration Form</title>
   </head>
   <body>
-    <img src="img/logo.png" alt="logo" style="float:right;width:400px;height:400px;">
-    <h1>Register Identifier and Hex Key</h1>
-    <form action="{{ url_for('register') }}" method="post">
-      Identifier: <input type="text" name="identifier"><br>
-      Hex Key: <input type="text" name="hex_key"><br>
+    <img src="img/logo.png" alt="your_image" style="float:center;width:400px;height:400px;">
+    <h2>Register your NIP-05 identifier with your hex format public key:</h2>
+    <form method="post">
+      <label for="identifier">Identifier:</label>
+      <input type="text" id="identifier" name="identifier" required><br><br>
+      <label for="hex_key">Hex Key:</label>
+      <input type="text" id="hex_key" name="hex_key" required><br><br>
       <input type="submit" value="Submit">
-    </form>
+    </form> 
   </body>
 </html>
-
