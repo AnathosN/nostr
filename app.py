@@ -7,6 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return "Welcome to the Flask app!"
+    return register()
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
