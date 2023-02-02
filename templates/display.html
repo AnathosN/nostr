@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nostr JSON File Contents</title>
+</head>
+<body>
+  <h1>Nostr JSON File Contents</h1>
+  <pre id="fileContents"></pre>
+  <script>
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '.well-known/nostr.json', true);
+    xhr.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        document.querySelector('#fileContents').textContent = this.responseText;
+      }
+    };
+    xhr.send();
+  </script>
+</body>
+</html>
