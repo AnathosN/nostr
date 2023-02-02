@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Identifier and Hex Key Registration</title>
-    </head>
-    <body>
-        <h1>Identifier and Hex Key Registration</h1>
-        <form action="http://localhost:5000/register" method="post">
-            <p>
-                Identifier: <input type="text" name="identifier">
-            </p>
-            <p>
-                Hex Key: <input type="text" name="hex_key">
-            </p>
-            <input type="submit" value="Submit">
-        </form>
-    </body>
+  <head>
+    <title>Registration Form</title>
+  </head>
+  <body>
+    <h2>Register an identifier and hex key</h2>
+    <form method="post">
+      <label for="identifier">Identifier:</label>
+      <input type="text" id="identifier" name="identifier" required><br><br>
+      <label for="hex_key">Hex Key:</label>
+      <input type="text" id="hex_key" name="hex_key" required><br><br>
+      <input type="submit" value="Submit">
+    </form> 
+  </body>
 </html>
