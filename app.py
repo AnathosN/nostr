@@ -41,7 +41,7 @@ def display():
         with open(nostr_file, 'r') as f:
             data = json.load(f)
             names = data.get('names', {})
-            return render_template('display_nostr.html', names=names)
+            return render_template('display.html', names=names)
 
     return 'No data found in nostr.json'
 
