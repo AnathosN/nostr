@@ -49,6 +49,19 @@ def display():
     else:
         return redirect(url_for("register"))
 
+@app.route("/display_all")
+def display_all():
+    nostr_file = os.path.join(".well-known", "nostr.json")
+    if os.path.exists(nostr_file):
+        with open(nostr_file, "r") as f:
+            data = json.load(f)
+            content = ""
+            for identifier, hex_key in data["names"].items():
+                content += f"{identifier}: {hex_key}<br>"
+            return content
+    else:
+        return "nostr.json file not found!"
+    
 @app.route("/.well-known/nostr.json")
 def nostr_json():
     identifier = request.args.get("name")
