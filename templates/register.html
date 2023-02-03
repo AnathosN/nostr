@@ -6,6 +6,16 @@
       body {
        background-color: black;
        color: white;
+       table {
+         margin: 0 auto;
+         border: 1px solid black;
+         border-collapse: collapse;
+       }
+
+       td {
+         border: 1px solid black;
+         padding: 10px;
+       }
       }
     </style>
   </head>
@@ -13,11 +23,20 @@
     <img src="{{ url_for('static', filename='logo.png') }} " alt="logo" style="float:center;width:400px;height:400px;">
     <h2>Register your NIP-05 identifier with your hex format public key:</h2>
     <form method="post">
-      <label for="identifier">Your Profile Name:</label>
-      <input type="text" id="identifier" name="identifier" size=50 required><br><br>
-      <label for="hex_key">Hex Pub Key:</label>
-      <input type="text" id="hex_key" name="hex_key" size=50 required><br><br>
-      <input type="submit" value="Submit">
+      <table>
+        <tr>
+          <td><label for="identifier">Your Profile Name:</label></td>
+          <td><input type="text" id="identifier" name="identifier" size=50 required></td>
+        </tr>
+        <tr>
+          <td><label for="hex_key">Hex Pub Key:</label></td>
+          <td><input type="text" id="hex_key" name="hex_key" size=50 required></td>
+        </tr>
+          <tr>
+            <td><input type="submit" value="Submit"></td>
+            <td></td>
+        </tr>  
+      </table>
     </form> 
   </body>
 </html>
