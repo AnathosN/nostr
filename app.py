@@ -35,12 +35,11 @@ def display():
     if os.path.exists(nostr_file):
         with open(nostr_file, "r") as f:
             data = json.load(f)
-            content = ""
-            for identifier, hex_key in data["names"].items():
-                content += f"{identifier}: {hex_key}<br>"
-            return content
+            names = [(identifier, hex_key, f"{identifier}@nostr.landresse.de") for identifier, hex_key in data["names"].items()]
+            return render_template("display.html", names=names)
     else:
         return "nostr.json file not found!"
+
 
 if __name__ == "__main__":
     app.run()
