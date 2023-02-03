@@ -8,7 +8,7 @@ app.secret_key = "N05TRD4MU5"
 #root page
 @app.route("/")
 def index():
-    return "Loading registration...", 302, {'Refresh': '3; url=/register'}
+    return render_template("index.html")
 
 #register method
 @app.route("/register", methods=["GET", "POST"])
