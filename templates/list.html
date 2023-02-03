@@ -24,19 +24,19 @@
     <br><br>
     <center>
     <table>
-      <tr>
-        <th>Identifier</th>
-        <th>Hex Key</th>
-        <th>NIP-05 Identifier</th>
-      </tr>
-      {% for item in content %}
-      <tr>
-        <td>{{ item[0] }}</td>
-        <td>{{ item[1] }}</td>
-        <td>{{ item[2] }}</td>
-      </tr>
-      {% endfor %}
-    </table>
+            <tr>
+                <th>Identifier</th>
+                <th>Hex Key</th>
+                <th>NIP-05 Identifier</th>
+            </tr>
+            {% for name in names %}
+            <tr>
+                <td>{{ name[0] }}</td>
+                <td>{{ name[1] }}</td>
+                <td>{{ name[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </center>
   </body>
   
