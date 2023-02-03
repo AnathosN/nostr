@@ -74,6 +74,49 @@ def display_all():
     else:
         return "nostr.json file not found!"
     
+@app.route("/purge", methods=["GET", "POST"])
+def purge():
+    nostr_file = os.path.join(".well-known", "nostr.json")
+    if os.path.exists(nostr_file):
+        with open(nostr_file, "w") as f:
+            json.dump({"names": {}}, f, indent=4)
+    return redirect(url_for("home"))
+
+@app.route("/delete", methods=["GET", "POST"])
+def delete():
+    if request.method == "POST":
+        # Input identifier
+        identifier = request.form["identifier"]
+        # Load the nostr.json file
+        nostr_file = os.path.join(".well-known", "nostr.json")
+        with open(nostr_file, "r") as f:
+            data = json.load(f)
+        # Check if identifier exists in the file
+        if identifier in data["names"]:
+            hex_key = data["names"][identifier]
+            # Render the confirm deletion page
+            return render_template("delete.html", identifier=identifier, hex_key=hex_key)
+        else:
+            # Identifier not found
+            return "This identifier does not exist."
+    return render_template("delete_input.html")
+
+@app.route("/confirm_delete", methods=["POST"])
+def confirm_delete():
+    # Input identifier
+    identifier = request.form["identifier"]
+    # Load the nostr.json file
+    nostr_file = os.path.join(".well-known", "nostr.json")
+    with open(nostr_file, "r") as f:
+        data = json.load(f)
+    # Delete the entry from the file
+    del data["names"][identifier]
+    with open(nostr_file, "w") as f:
+        json.dump(data, f, indent=4)
+    # Redirect to the display page
+    return redirect(url_for("display"))
+
+    
 @app.route("/.well-known/nostr.json")
 def nostr_json():
     identifier = request.args.get("name")
