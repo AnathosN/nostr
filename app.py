@@ -48,23 +48,24 @@ def display():
             return "nostr.json file not found!"
     else:
         return redirect(url_for("register"))
-    
- @app.route("/.well-known/nostr.json")
- def nostr_json():
-     identifier = request.args.get("name")
-     nostr_file = os.path.join(".well-known", "nostr.json")
-     if os.path.exists(nostr_file):
-         with open(nostr_file, "r") as f:
-             data = json.load(f)
-             if identifier in data["names"]:
-                 hex_key = data["names"][identifier]
-                 response = jsonify({"hex_key": hex_key})
-                 response.headers.add("Access-Control-Allow-Origin", "*")
-                 return response
-             else:
-                 return "Identifier not found", 404
-     else: 
-         return "nostr.json file not found!", 404
+
+@app.route("/.well-known/nostr.json")
+def nostr_json():
+    identifier = request.args.get("name")
+    nostr_file = os.path.join(".well-known", "nostr.json")
+    if os.path.exists(nostr_file):
+        with open(nostr_file, "r") as f:
+            data = json.load(f)
+            if identifier in data["names"]:
+                hex_key = data["names"][identifier]
+                response = jsonify({"hex_key": hex_key})
+                response.headers.add("Access-Control-Allow-Origin", "*")
+                return response
+            else:
+                return "Identifier not found", 404
+    else:
+        return "nostr.json file not found!", 404
+
 
 if __name__ == "__main__":
     app.run()
