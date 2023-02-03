@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Nostr JSON File Contents</title>
-</head>
-<body>
-  <h1>Nostr JSON File Contents</h1>
-  <pre id="fileContents"></pre>
-  <script>
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '.well-known/nostr.json', true);
-    xhr.onreadystatechange = function() {
-      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        document.querySelector('#fileContents').textContent = this.responseText;
+  <head>
+    <style>
+      body {
+        background-color: black;
+        color: white;
       }
-    };
-    xhr.send();
-  </script>
-</body>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid white;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: grey;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Identifier</th>
+        <th>Hex Key</th>
+        <th>NIP-05 Identifier</th>
+      </tr>
+      {% for identifier, hex_key in names %}
+      <tr>
+        <td>{{ identifier }}</td>
+        <td>{{ hex_key }}</td>
+        <td>{{ identifier }}@nostr.lnadresse.de</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
 </html>
+
