@@ -4,46 +4,49 @@ import os
 
 app = Flask(__name__)
 
+#root page
 @app.route("/")
 def index():
     return "Loading registration...", 302, {'Refresh': '3; url=/register'}
 
+#register method
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        identifier = request.form.get("identifier")
-        hex_key = request.form.get("hex_key")
+        identifier = request.form["identifier"]
+        # Generate hex key
+        hex_key = request.form["hex_key"]
+        # Store in nostr.json file
+        nostr_file = os.path.join(".well-known", "nostr.json")
+        if not os.path.exists(nostr_file):
+            data = {"names": {}}
+        else:
+            with open(nostr_file, "r") as f:
+                data = json.load(f)
+        data["names"][identifier] = hex_key
+        with open(nostr_file, "w") as f:
+            json.dump(data, f, indent=4)
+        session["identifier"] = identifier
+        return redirect(url_for("display"))
+    return render_template("register.html")
 
+#display method
+@app.route("/display")
+def display():
+    identifier = session.get("identifier", None)
+    if identifier is not None:
         nostr_file = os.path.join(".well-known", "nostr.json")
         if os.path.exists(nostr_file):
             with open(nostr_file, "r") as f:
                 data = json.load(f)
-                data["names"][identifier] = hex_key
-        else:
-            data = {"names": {identifier: hex_key}}
-
-        with open(nostr_file, "w") as f:
-            json.dump(data, f, indent=4)
-
-        return display()
-
-    return render_template("register.html")
-
-@app.route("/display")
-def display():
-    nostr_file = os.path.join(".well-known", "nostr.json")
-    if os.path.exists(nostr_file):
-        with open(nostr_file, "r") as f:
-            data = json.load(f)
-            if "names" in data and isinstance(data["names"], dict):
                 content = []
-                for identifier, hex_key in data["names"].items():
-                    content.append({"identifier": identifier, "hex_key": hex_key, "nip05_identifier": f"{identifier}@nostr.lnadresse.de"})
+                if identifier in data["names"]:
+                    content.append((identifier, data["names"][identifier], f"{identifier}@nostr.lnadresse.de"))
                 return render_template("display.html", content=content)
-            else:
-                return "Error: 'names' not found in nostr.json or is not a dictionary"
+        else:
+            return "nostr.json file not found!"
     else:
-        return "Error: nostr.json file not found!"
-    
+        return redirect(url_for("register"))
+
 if __name__ == "__main__":
     app.run()
