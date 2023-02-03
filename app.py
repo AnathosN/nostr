@@ -66,11 +66,8 @@ def display_all():
     if os.path.exists(nostr_file):
         with open(nostr_file, "r") as f:
             data = json.load(f)
-            content = ""
-            for identifier, hex_key in data["names"].items():
-                nip_05_id = f"{identifier}@nostr.lnadresse.de"
-                content.append((identifier, hex_key, nip_05_id))
-            return render_template("list.html", content=content)
+            names = [(identifier, hex_key, f"{identifier}@nostr.landresse.de") for identifier, hex_key in data["names"].items()]
+            return render_template("list.html", names=names)
     else:
         return "nostr.json file not found!"
     
