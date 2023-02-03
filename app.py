@@ -58,8 +58,7 @@ def nostr_json():
             data = json.load(f)
             if identifier in data["names"]:
                 hex_key = data["names"][identifier]
-                response = jsonify({"hex_key": hex_key})
-#                response.headers["Access-Control-Allow-Origin"] = "*"
+                response = jsonify({"names": {identifier: hex_key}})
                 return response
             else:
                 return jsonify({"error": "Identifier not found"}), 404
