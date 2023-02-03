@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, s
 import json
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
 
 #root page
