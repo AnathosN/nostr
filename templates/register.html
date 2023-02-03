@@ -10,13 +10,13 @@
     </style>
   </head>
   <body>
-    <img src="img/logo.png" alt="your_image" style="float:center;width:400px;height:400px;">
+    <img src="templates/img/logo.png" alt="your_image" style="float:center;width:400px;height:400px;">
     <h2>Register your NIP-05 identifier with your hex format public key:</h2>
     <form method="post">
-      <label for="identifier">Identifier:</label>
-      <input type="text" id="identifier" name="identifier" required><br><br>
-      <label for="hex_key">Hex Key:</label>
-      <input type="text" id="hex_key" name="hex_key" required><br><br>
+      <label for="identifier">Your Profile Name:</label>
+      <input type="text" id="identifier" name="identifier" size=50 required><br><br>
+      <label for="hex_key">Hex Pub Key:</label>
+      <input type="text" id="hex_key" name="hex_key" size=50 required><br><br>
       <input type="submit" value="Submit">
     </form> 
   </body>
