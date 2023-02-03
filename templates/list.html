@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+      table {
+        width: 80%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid white;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: grey;
+      }
+    </style>
+  </head>
+  <body>
+    <br><br>
+    <center>
+    <table>
+      <tr>
+        <th>Identifier</th>
+        <th>Hex Key</th>
+        <th>NIP-05 Identifier</th>
+      </tr>
+      {% for item in content %}
+      <tr>
+        <td>{{ item[0] }}</td>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    </center>
+  </body>
+  
