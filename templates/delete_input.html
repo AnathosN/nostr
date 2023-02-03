@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <br><br><br>
+    <h2>Confirm Deletion</h2>
+    <br><br>
+    <p>{{ identifier }}: {{ hex_key }}</p>
+    <br><br>
+    <form action="{{ url_for('delete_confirm') }}" method="post">
+      <input type="hidden" name="identifier" value="{{ identifier }}">
+      <input type="submit" value="Confirm Deletion">
+    </form>
+  </body>
+</html>
