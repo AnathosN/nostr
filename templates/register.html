@@ -10,7 +10,7 @@
     </style>
   </head>
   <body>
-    <img src="templates/img/logo.png" alt="your_image" style="float:center;width:400px;height:400px;">
+    <img src="{{ url_for('static', filename='img/logo.png') }} " alt="logo" style="float:center;width:400px;height:400px;">
     <h2>Register your NIP-05 identifier with your hex format public key:</h2>
     <form method="post">
       <label for="identifier">Your Profile Name:</label>
