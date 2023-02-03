@@ -12,6 +12,12 @@
         justify-content: center;
         align-items: center;
       }
+      
+      .bottom-frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
       table {
         margin: 0 auto;
@@ -33,8 +39,9 @@
   </head>
   <body>
     <div class="top-frame">
+      <center>
       <img src="{{ url_for('static', filename='logo.png') }}" width="300" height="300" />
-      <br /><br /><br />
+      <br><br><br>
       <table>
         <tr>
           <td><button onclick="parent.bottom-frame.location='home.html'">HOME</button></td>
@@ -42,6 +49,7 @@
           <td><button onclick="parent.bottom-frame.location='{{ url_for('register') }}'">REGISTER</button></td>
         </tr>
       </table>
+      </center>
     </div>
     <iframe name="bottom-frame" frameborder="0"></iframe>
   </body>
