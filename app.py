@@ -35,13 +35,15 @@ def display():
     if os.path.exists(nostr_file):
         with open(nostr_file, "r") as f:
             data = json.load(f)
-            content = []
-            for identifier, hex_key_dict in data["names"].items():
-                for key_name, hex_key in hex_key_dict.items():
+            if "names" in data and isinstance(data["names"], dict):
+                content = []
+                for identifier, hex_key in data["names"].items():
                     content.append({"identifier": identifier, "hex_key": hex_key, "nip05_identifier": f"{identifier}@nostr.lnadresse.de"})
-            return render_template("display.html", data=content)
+                return render_template("display.html", content=content)
+            else:
+                return "Error: 'names' not found in nostr.json or is not a dictionary"
     else:
-        return "nostr.json file not found!"
-
+        return "Error: nostr.json file not found!"
+    
 if __name__ == "__main__":
     app.run()
