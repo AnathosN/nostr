@@ -10,6 +10,16 @@ app.secret_key = "N05TRD4MU5"
 def index():
     return render_template("index.html")
 
+#home frame
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
+#info frame
+@app.route("/info")
+def info():
+    return render_template("info.html")
+
 #register method
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -49,6 +59,7 @@ def display():
     else:
         return redirect(url_for("register"))
 
+#display all entries
 @app.route("/display_all")
 def display_all():
     nostr_file = os.path.join(".well-known", "nostr.json")
@@ -58,7 +69,7 @@ def display_all():
             content = ""
             for identifier, hex_key in data["names"].items():
                 content += f"{identifier}: {hex_key}<br>"
-            return content
+            return render_template("list.html", content=content)
     else:
         return "nostr.json file not found!"
     
