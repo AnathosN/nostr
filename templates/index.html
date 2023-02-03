@@ -43,9 +43,9 @@
   <body>
     <div class="top-frame">
       <center>
-      <img src="{{ url_for('static', filename='logo.png') }}" width="250" height="250" />
       <table>
         <tr>
+          <td><img src="{{ url_for('static', filename='logo.png') }}" width="250" height="250" /></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('home') }}'">HOME</button></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('info') }}'">INFO</button></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('register') }}'">REGISTER</button></td>
