@@ -68,7 +68,7 @@ def display_all():
             data = json.load(f)
             content = ""
             for identifier, hex_key in data["names"].items():
-                content.append((identifier, data["names"][identifier], f"{identifier}@nostr.lnadresse.de"))
+                content += data["names"]
             return render_template("list.html", content=content)
     else:
         return "nostr.json file not found!"
