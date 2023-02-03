@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+
+      .top-frame {
+        height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      table {
+        margin: 0 auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+
+      button {
+        width: 200px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-frame">
+      <img src="{{ url_for('static', filename='logo.png' }}" width="300" height="300" />
+      <br /><br /><br />
+      <table>
+        <tr>
+          <td><button onclick="parent.bottom-frame.location='home.html'">HOME</button></td>
+          <td><button onclick="parent.bottom-frame.location='info.html'">INFO</button></td>
+          <td><button onclick="parent.bottom-frame.location='register'">REGISTER</button></td>
+        </tr>
+      </table>
+    </div>
+    <iframe name="bottom-frame" frameborder="0"></iframe>
+  </body>
+</html>
