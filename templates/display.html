@@ -7,7 +7,7 @@
         color: white;
       }
       table {
-        width: 100%;
+        width: 80%;
         border-collapse: collapse;
       }
       th, td {
@@ -21,18 +21,37 @@
     </style>
   </head>
   <body>
+    <p><center>
+     Your NIP-05 Identifier has be successfully created.
+     To use it, put it into the respective NIP-05 identifier field on the profile in your favourite nostr client.
+      <br>
+      <br>
+      </center>
+      </p>
+    <center>
     <table>
-  <tr>
-    <th>Identifier</th>
-    <th>Hex Key</th>
-    <th>NIP-05 Identifier</th>
-  </tr>
-  {% for item in content %}
-  <tr>
-    <td>{{ item[0] }}</td>
-    <td>{{ item[1] }}</td>
-    <td>{{ item[2] }}</td>
-  </tr>
-  {% endfor %}
-</table>
-
+      <tr>
+        <th>Identifier</th>
+        <th>Hex Key</th>
+        <th>NIP-05 Identifier</th>
+      </tr>
+      {% for item in content %}
+      <tr>
+        <td>{{ item[0] }}</td>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    </center>
+    <p>
+      <center>
+        If you like our work, feel free to donate some sats.
+        <br>
+        <img src="{{ url_for('static', filename='LNURLp_donation.png') }}">
+        <br>
+        Thanks for your support!
+      </center>
+    </p>
+  </body>
+  
