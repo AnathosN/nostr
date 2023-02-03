@@ -36,7 +36,7 @@ def register():
             with open(nostr_file, "r") as f:
                 data = json.load(f)
         if identifier in data["names"] and data["names"][identifier] == hex_key:
-            return "This Profile Name and Hex Pub Key is already registered."
+            return render_template("duplicate.html")
         data["names"][identifier] = hex_key
         with open(nostr_file, "w") as f:
             json.dump(data, f, indent=4)
