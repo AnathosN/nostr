@@ -23,6 +23,7 @@ def info():
 #register method
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    domain = []
     domain = request.host.split(":")[0]
     if request.method == "POST":
         # Input Profile Name
@@ -48,6 +49,7 @@ def register():
 #display method
 @app.route("/display")
 def display():
+    domain = []
     domain = request.host.split(":")[0]
     identifier = session.get("identifier", None)
     if identifier is not None:
@@ -67,6 +69,7 @@ def display():
 #display all entries
 @app.route("/display_all")
 def display_all():
+    domain = []
     domain = request.host.split(":")[0]
     nostr_file = os.path.join(".well-known", "nostr.json")
     if os.path.exists(nostr_file):
