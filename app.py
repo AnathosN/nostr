@@ -22,8 +22,7 @@ def agent():
     version = 'desktop'
     if 'mobile' in user_agent.lower():
         version = 'mobile'
-    return user_agent
-    return version
+    return jsonify({'user_agent': user_agent, 'version': version})
 
 #check domain
 @app.route("/domain")
