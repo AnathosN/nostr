@@ -23,6 +23,7 @@ def agent():
     if 'mobile' in user_agent.lower():
         version = 'mobile'
     return user_agent
+    return version
 
 #check domain
 @app.route("/domain")
