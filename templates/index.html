@@ -39,6 +39,7 @@
       button {
         width: 200px;
         height: 50px;
+        font-size: 20px;
       }
 
       {% if version == 'mobile' %}
@@ -60,8 +61,9 @@
         }
 
         button {
-          width: 150px;
-          height: 40px;
+          width: 200px;
+          height: 50px;
+          font-size: 20px;
         }
       {% endif %}
     </style>
@@ -77,6 +79,18 @@
       </table>
       </center>
     </div>
+    {% if version == 'mobile' %}
+    <div class="top-frame">
+      <center>
+      <table>
+          <tr><td><img src="{{ url_for('static', filename='logo.png') }}" width="150" height="150" /></td>
+          <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('home') }}'">HOME</button></td>
+          <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('info') }}'">INFO</button></td>
+          <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('register') }}'">REGISTER</button></td>
+      </table>
+      </center>
+    </div>
+    {% endif %}
     <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
   </body>
 </html>
