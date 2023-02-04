@@ -4,6 +4,7 @@ import os
 
 app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
+domain = request.host.split(":")[0]
 
 #root page
 @app.route("/")
@@ -55,7 +56,7 @@ def display():
                 data = json.load(f)
                 content = []
                 if identifier in data["names"]:
-                    content.append((identifier, data["names"][identifier], f"{identifier}@nostr.lnadresse.de"))
+                    content.append((identifier, data["names"][identifier], f"{identifier}@{domain}"))
                 return render_template("display.html", content=content)
         else:
             return "nostr.json file not found!"
