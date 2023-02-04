@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
-import user_agent
+from user_agent import parse
 import json
 import os
 
@@ -10,9 +10,8 @@ app.secret_key = "N05TRD4MU5"
 @app.route("/")
 def index():
     user_agent = request.user_agent.string
-    parsed_ua = UserAgent(user_agent)
     version = 'desktop'
-    if parsed_ua.is_mobile:
+    if "mobile" in user_agent.lower():
         version = 'mobile'
     return render_template("index.html", version=version)
 
