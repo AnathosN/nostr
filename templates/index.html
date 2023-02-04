@@ -40,6 +40,30 @@
         width: 200px;
         height: 50px;
       }
+
+      {% if user_agent == 'mobile' %}
+        /* Add styles specific to the mobile version */
+        iframe {
+          height: 500px;
+        }
+
+        .top-frame {
+          height: 150px;
+        }
+
+        table {
+          font-size: 14px;
+        }
+
+        td {
+          padding: 5px;
+        }
+
+        button {
+          width: 150px;
+          height: 40px;
+        }
+      {% endif %}
     </style>
   </head>
   <body>
@@ -58,3 +82,4 @@
     <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
   </body>
 </html>
+
