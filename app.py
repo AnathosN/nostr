@@ -15,6 +15,13 @@ def index():
 def home():
     return render_template("home.html")
 
+#check domain
+@app.route("/domain")
+def domain():
+    domain = []
+    domain = request.host.split(":")[0]
+    return domain
+
 #info frame
 @app.route("/info")
 def info():
