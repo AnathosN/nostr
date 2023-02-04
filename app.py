@@ -9,14 +9,11 @@ app.secret_key = "N05TRD4MU5"
 #root page
 @app.route("/")
 def index():
-    user_agent = request.headers.get("User-Agent")
-    user_agent = parse(user_agent)
-    if user_agent.is_mobile:
-        # render the mobile version of the website
-        return render_template("index.html")
-    else:
-        # render the desktop version of the website
-        return render_template("index.html")
+    user_agent = request.user_agent.string
+    version = 'desktop'
+    if 'mobile' in user_agent.lower():
+        version = 'mobile'
+    return render_template("index.html", version=version)
 
 #home frame
 @app.route("/home")
