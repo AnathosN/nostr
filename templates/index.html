@@ -70,15 +70,10 @@
     <div class="top-frame">
       <center>
       <table>
-        <tr>
           <tr><td><img src="{{ url_for('static', filename='logo.png') }}" width="250" height="250" /></td>
-        </tr>
-        <tr>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('home') }}'">HOME</button></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('info') }}'">INFO</button></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('register') }}'">REGISTER</button></td>
-        </tr>
-        </tr>
       </table>
       </center>
     </div>
