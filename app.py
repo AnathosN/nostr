@@ -15,6 +15,15 @@ def index():
 def home():
     return render_template("home.html")
 
+#check user agent
+@app.route("/agent")
+def agent():
+    user_agent = request.user_agent.string
+    version = 'desktop'
+    if 'mobile' in user_agent.lower():
+        version = 'mobile'
+    return user_agent
+
 #check domain
 @app.route("/domain")
 def domain():
