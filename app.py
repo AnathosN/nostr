@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
-from user_agent import UserAgent
+import user_agent
 import json
 import os
 
@@ -20,6 +20,12 @@ def index():
 @app.route("/home")
 def home():
     return render_template("home.html")
+
+#check user agent
+@app.route("/agent")
+def agent():
+    user_agent = request.user_agent.string
+    return user_agent
 
 #check domain
 @app.route("/domain")
