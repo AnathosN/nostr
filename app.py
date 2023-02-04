@@ -4,7 +4,6 @@ import os
 
 app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
-domain = request.host.split(":")[0]
 
 #root page
 @app.route("/")
@@ -24,6 +23,7 @@ def info():
 #register method
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    domain = request.host.split(":")[0]
     if request.method == "POST":
         # Input Profile Name
         identifier = request.form["identifier"]
