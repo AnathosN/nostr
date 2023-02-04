@@ -1,5 +1,4 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
-from user_agent import parse
 import json
 import os
 
@@ -9,22 +8,12 @@ app.secret_key = "N05TRD4MU5"
 #root page
 @app.route("/")
 def index():
-    user_agent = request.user_agent.string
-    version = 'desktop'
-    if "mobile" in user_agent.lower():
-        version = 'mobile'
-    return render_template("index.html", version=version)
+    return render_template("index.html")
 
 #home frame
 @app.route("/home")
 def home():
     return render_template("home.html")
-
-#check user agent
-@app.route("/agent")
-def agent():
-    user_agent = request.user_agent.string
-    return user_agent
 
 #check domain
 @app.route("/domain")
