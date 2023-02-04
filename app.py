@@ -18,7 +18,7 @@ def home():
 #check domain
 @app.route("/domain")
 def domain():
-    return request.host.split(":")[0]
+    return request.host.split(":")[0].split(",")[0]
 
 #info frame
 @app.route("/info")
