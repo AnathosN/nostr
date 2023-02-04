@@ -69,21 +69,22 @@
     </style>
   </head>
   <body>
+    {% if version == 'mobile' %}
     <div class="top-frame">
       <center>
       <table>
-          <tr><td><img src="{{ url_for('static', filename='logo.png') }}" width="250" height="250" /></td>
+          <tr><td><img src="{{ url_for('static', filename='logo.png') }}" width="150" height="150" /></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('home') }}'">HOME</button></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('info') }}'">INFO</button></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('register') }}'">REGISTER</button></td>
       </table>
       </center>
     </div>
-    {% if version == 'mobile' %}
+    {% else %}
     <div class="top-frame">
       <center>
       <table>
-          <tr><td><img src="{{ url_for('static', filename='logo.png') }}" width="150" height="150" /></td>
+          <tr><td><img src="{{ url_for('static', filename='logo.png') }}" width="250" height="250" /></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('home') }}'">HOME</button></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('info') }}'">INFO</button></td>
           <td><button onclick="window.frames['bottom-frame'].location='{{ url_for('register') }}'">REGISTER</button></td>
