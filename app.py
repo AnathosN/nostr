@@ -157,11 +157,17 @@ def confirm_delete():
             with open(nostr_file, "w") as f:
                 json.dump(data, f, indent=4)
             # Redirect to the confirm page
-            return render_template("confirm.html")
+            return redirect(url_for("confirm"))
         else:
             # Identifier not found
             return "This identifier does not exist."
     return render_template("delete_input.html")
+
+@app.route("/confirm", methods=["GET", "POST"])
+def confirm():
+    if request.method == "POST":
+        return redirect(url_for("home"))
+    return render_template("confirm.html")
 
     
 @app.route("/.well-known/nostr.json")
