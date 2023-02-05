@@ -71,29 +71,22 @@ def register():
 def verify():
     if request.method == "POST":
         hex_key = request.form.get("hex_key")
-        return f"Step1: {hex_key}"
         if hex_key is None:
             return "No hex key provided", 400
-        if hex_key.startswith("npub"):
-            # Convert the public key from Bech32 to hex
-            hex_key = bech32.decode(hex_key)[1].hex()
-            return f"Step2.1: {hex_key}"
-            hex_key = PublicKey(bytes.fromhex(hex_key), raw=True)
         else:
             try:
-                return f"Step2.2: {hex_key}"
-                # Load the public key
-                hex_key = PublicKey(bytes.fromhex(hex_key), raw=True)
+                # Verify that the public key is valid
+                hex_key.verify()
+                return f"The input public key is valid. {hex_key}"
             except Exception as e:
-                return "Invalid public key provided", 400
-        
-        try:
-            # Verify that the public key is valid
-            hex_key.verify()
-            return "The input public key is valid."
-        except Exception as e:
-            return "The input public key is not valid.", 400
-    return render_template("verify.html")
+                if hex_key.startswith("npub"):
+                    # Convert the public key from Bech32 to hex
+                    hex_key = bech32.decode(hex_key)[1].hex()
+                    hex_key.verify()
+                    return f"The input public key is valid. {hex_key}"
+                except Exception as e:
+                    return "The input public key is not valid.", 400
+        return render_template("verify.html")
 
 #display method
 @app.route("/display")
