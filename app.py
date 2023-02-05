@@ -156,7 +156,11 @@ def confirm_delete():
             del data["names"][identifier]
             with open(nostr_file, "w") as f:
                 json.dump(data, f, indent=4)
-            # Redirect to the display page
+            # Redirect to the confirm page
+            return render_template("confirm.html")
+        else:
+            # Identifier not found
+            return "This identifier does not exist."
     return render_template("delete_input.html")
 
     
