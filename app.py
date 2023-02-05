@@ -133,27 +133,31 @@ def delete():
         # Check if identifier exists in the file
         if identifier in data["names"]:
             hex_key = data["names"][identifier]
+            session["identifier"] = identifier
+            session["hex_key"] = hex_key
             # Render the confirm deletion page
-            return render_template("delete.html", identifier=identifier, hex_key=hex_key)
+            return redirect(url_for("confirm_delete")
         else:
             # Identifier not found
             return "This identifier does not exist."
-    return render_template("delete_input.html")
+    return render_template("delete.html")
 
-@app.route("/confirm_delete", methods=["POST"])
+@app.route("/confirm_delete", methods=["GET", "POST"])
 def confirm_delete():
-    # Input identifier
-    identifier = request.form["identifier"]
-    # Load the nostr.json file
-    nostr_file = os.path.join(".well-known", "nostr.json")
-    with open(nostr_file, "r") as f:
-        data = json.load(f)
-    # Delete the entry from the file
-    del data["names"][identifier]
-    with open(nostr_file, "w") as f:
-        json.dump(data, f, indent=4)
-    # Redirect to the display page
-    return redirect(url_for("display"))
+    if request.method == "POST":
+        identifier = session.get("identifier", None)
+        hex_key = session.get("hex_key", None)
+        if identifier is not None:
+            # Load the nostr.json file
+            nostr_file = os.path.join(".well-known", "nostr.json")
+            with open(nostr_file, "r") as f:
+                data = json.load(f)
+            # Delete the entry from the file
+            del data["names"][identifier]
+            with open(nostr_file, "w") as f:
+                json.dump(data, f, indent=4)
+            # Redirect to the display page
+    return render_template("delete_input.html")
 
     
 @app.route("/.well-known/nostr.json")
