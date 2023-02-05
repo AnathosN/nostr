@@ -51,6 +51,17 @@ def register():
         identifier = request.form["identifier"]
         # Input hex pub key
         hex_key = request.form["hex_key"]
+        #verify/convert public key
+        if len(hex_key) != 64:
+            if hex_key.startswith("npub"):
+                # Convert the public key from Bech32 to hex
+                pk = PublicKey.from_npub(public_key)
+                hex_key = PublicKey.hex(pk)
+             else:
+                return f"The input public key is invalid. {hex_key}"
+        else:
+            if hex_key.isalnum() != True:
+                return f"The input public key is invalid. {hex_key}"
         # Store in nostr.json file
         nostr_file = os.path.join(".well-known", "nostr.json")
         if not os.path.exists(nostr_file):
@@ -60,6 +71,7 @@ def register():
                 data = json.load(f)
         if identifier in data["names"] and data["names"][identifier] == hex_key:
             return render_template("duplicate.html")
+        
         data["names"][identifier] = hex_key
         with open(nostr_file, "w") as f:
             json.dump(data, f, indent=4)
