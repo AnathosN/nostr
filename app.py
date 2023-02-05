@@ -166,7 +166,7 @@ def confirm_delete():
 @app.route("/confirm", methods=["GET", "POST"])
 def confirm():
     if request.method == "POST":
-        return redirect(url_for("home"))
+        return redirect(url_for("register"))
     return render_template("confirm.html")
 
     
