@@ -4,7 +4,7 @@ import os
 import ssl
 import time
 from binascii import unhexlify
-from nostr.key import PublicKey
+import nostr
 
 app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
