@@ -13,10 +13,10 @@
     <br><br><br>
     <h2>Delete Entry</h2>
     <br><br>
-    <form action="{{ url_for('delete_input') }}" method="post">
-      <input type="text" name="identifier" placeholder="Profile Name">
+    <form action="{{ url_for('delete') }}" method="post">
+      <p>Enter Identifier: <input type="text" name="identifier" /></p>
       <br><br>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Delete">
     </form>
   </body>
 </html>
