@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
 import json
 import os
+import bech32
 
 app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
@@ -62,6 +63,22 @@ def register():
         session["identifier"] = identifier
         return redirect(url_for("display"))
     return render_template("register.html")
+
+#verify hex key test
+@app.route("/verify", methods=["GET", "POST"])
+def verify():
+    hex_key = request.form["hex_key"]
+    try:
+        # Decode the Bech32 encoded hex key
+        bech32.decode(hex_key)
+        return "The input hex key is a valid Bech32 encoded key."
+        if hex_key.startswith("npub"):
+        # Encode the hex key to bech32 format
+        return "Converted hex key in Bech32 format:", bech32.encode("hex", hex_key[4:].encode("utf-8"))
+    else:
+        return "Converted hex key in Bech32 format:", hex_key
+    except bech32.Bech32Error:
+        return print("The input hex key is a valid Bech32 encoded key.")
 
 #display method
 @app.route("/display")
