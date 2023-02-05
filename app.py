@@ -55,7 +55,7 @@ def register():
         if len(hex_key) != 64:
             if hex_key.startswith("npub"):
                 # Convert the public key from Bech32 to hex
-                pk = PublicKey.from_npub(public_key)
+                pk = PublicKey.from_npub(hex_key)
                 hex_key = PublicKey.hex(pk)
         else:
             if hex_key.isalnum() != True:
