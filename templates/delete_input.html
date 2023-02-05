@@ -18,8 +18,8 @@
         <th>Hex Key</th>
       </tr>
       <tr>
-        <td>{{ identifier }}</td>
-        <td>{{ hex_key }}</td>
+        <td>{{ session.identifier }}</td>
+        <td>{{ session.hex_key }}</td>
       </tr>
     </table>
     <form action="{{ url_for('confirm_delete') }}" method="post">
