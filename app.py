@@ -57,8 +57,6 @@ def register():
                 # Convert the public key from Bech32 to hex
                 pk = PublicKey.from_npub(public_key)
                 hex_key = PublicKey.hex(pk)
-             else:
-                return f"The input public key is invalid. {hex_key}"
         else:
             if hex_key.isalnum() != True:
                 return f"The input public key is invalid. {hex_key}"
