@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
 import json
 import os
-from secp256k1 import PrivateKey, PublicKey, Secp256k1
+from secp256k1 import PublicKey
 import bech32
 import nostr
 
