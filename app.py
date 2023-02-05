@@ -75,7 +75,7 @@ def verify():
             # Decode the Bech32 encoded hex key
             bech32.decode(hex_key)
             return "The input hex key is a valid Bech32 encoded key."
-        except bech32.Bech32Error:
+        except bech32.EncodingError:
             if hex_key.startswith("npub"):
                 # Encode the hex key to bech32 format
                 converted_key = bech32.encode("hex", hex_key[4:].encode("utf-8"))
