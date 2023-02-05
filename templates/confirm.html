@@ -21,13 +21,12 @@
       th {
         background-color: grey;
       }
-      button {
-        height:75px;
-        width: 150px;
-      }
     </style>
   </head>
   <body>
     <p>Entry successfully deleted.</p>
-    <button onclick="parent.bottom-frame.location='{{ url_for('home') }}'">HOME</button>
+    <br><br>
+    <form action="{{ url_for('confirm') }}" method="post">
+      <input type="submit" value="Confirm">
+    </form>
   </body>
