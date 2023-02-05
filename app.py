@@ -72,13 +72,13 @@ def verify():
         # Decode the Bech32 encoded hex key
         bech32.decode(hex_key)
         return "The input hex key is a valid Bech32 encoded key."
-        if hex_key.startswith("npub"):
-        # Encode the hex key to bech32 format
-        return "Converted hex key in Bech32 format:", bech32.encode("hex", hex_key[4:].encode("utf-8"))
-    else:
-        return "Converted hex key in Bech32 format:", hex_key
     except bech32.Bech32Error:
-        return print("The input hex key is a valid Bech32 encoded key.")
+        if hex_key.startswith("npub"):
+            # Encode the hex key to bech32 format
+            return "Converted hex key in Bech32 format: " + bech32.encode("hex", hex_key[4:].encode("utf-8"))
+        else:
+            return "The input hex key is not a valid Bech32 encoded key."
+    return "Converted hex key in Bech32 format: " + hex_key
 
 #display method
 @app.route("/display")
