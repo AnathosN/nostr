@@ -77,7 +77,7 @@ def verify():
             if public_key.startswith("npub"):
                 # Convert the public key from Bech32 to hex
                 pk = PublicKey.from_npub(public_key)
-                hex_key = pk.public_key.hex()
+                hex_key = PublicKey.hex(pk)
                 return f"The input public key is valid. {hex_key}"
             else:
                 return f"The input public key is invalid. {public_key}"
