@@ -71,14 +71,17 @@ def register():
 def verify():
     if request.method == "POST":
         hex_key = request.form.get("hex_key")
+        return f"Step1: {hex_key}"
         if hex_key is None:
             return "No hex key provided", 400
         if hex_key.startswith("npub"):
             # Convert the public key from Bech32 to hex
             hex_key = bech32.decode(hex_key)[1].hex()
+            return f"Step2.1: {hex_key}"
             hex_key = PublicKey(bytes.fromhex(hex_key), raw=True)
         else:
             try:
+                return f"Step2.2: {hex_key}"
                 # Load the public key
                 hex_key = PublicKey(bytes.fromhex(hex_key), raw=True)
             except Exception as e:
