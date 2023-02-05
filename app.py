@@ -66,7 +66,6 @@ def register():
         return redirect(url_for("display"))
     return render_template("register.html")
 
-#verify hex key test
 @app.route("/verify", methods=["GET", "POST"])
 def verify():
     if request.method == "POST":
@@ -76,17 +75,17 @@ def verify():
         else:
             try:
                 # Verify that the public key is valid
-                hex_key.verify()
+                public_key = PublicKey(bytes.fromhex(hex_key), raw=True)
                 return f"The input public key is valid. {hex_key}"
             except Exception as e:
                 if hex_key.startswith("npub"):
                     # Convert the public key from Bech32 to hex
                     hex_key = bech32.decode(hex_key)[1].hex()
-                    hex_key.verify()
+                    public_key = PublicKey(bytes.fromhex(hex_key), raw=True)
                     return f"The input public key is valid. {hex_key}"
-                except Exception as e:
+                else:
                     return "The input public key is not valid.", 400
-        return render_template("verify.html")
+    return render_template("verify.html")
 
 #display method
 @app.route("/display")
