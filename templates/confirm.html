@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Confirm Delete</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+      table {
+        width: 80%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+      }
+      th, td {
+        border: 1px solid white;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: grey;
+      }
+      button {
+        height:75px;
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Entry successfully deleted.</p>
+    <button onclick="parent.bottom-frame.location='{{ url_for('home') }}'">HOME</button>
+  </body>
