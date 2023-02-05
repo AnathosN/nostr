@@ -1,7 +1,9 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
 import json
 import os
+from secp256k1 import PrivateKey, PublicKey, Secp256k1
 import bech32
+import nostr
 
 app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
@@ -71,17 +73,23 @@ def verify():
         hex_key = request.form.get("hex_key")
         if hex_key is None:
             return "No hex key provided", 400
+        if hex_key.startswith("npub"):
+            # Convert the public key from Bech32 to hex
+            hex_key = bech32.decode(hex_key)[1].hex()
+            hex_key = PublicKey(bytes.fromhex(hex_key), raw=True)
+        else:
+            try:
+                # Load the public key
+                public_key = PublicKey(bytes.fromhex(public_key), raw=True)
+            except Exception as e:
+                return "Invalid public key provided", 400
+        
         try:
-            # Decode the Bech32 encoded hex key
-            bech32.decode(hex_key)
-            return "The input hex key is a valid Bech32 encoded key."
-        except bech32.EncodingError:
-            if hex_key.startswith("npub"):
-                # Encode the hex key to bech32 format
-                converted_key = bech32.encode("hex", hex_key[4:].encode("utf-8"))
-                return f"Converted hex key in Bech32 format: {converted_key}"
-            else:
-                return "The input hex key is not a valid Bech32 encoded key."
+            # Verify that the public key is valid
+            public_key.verify()
+            return "The input public key is valid."
+        except Exception as e:
+            return "The input public key is not valid.", 400
     return render_template("verify.html")
 
 #display method
