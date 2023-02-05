@@ -80,13 +80,13 @@ def verify():
         else:
             try:
                 # Load the public key
-                public_key = PublicKey(bytes.fromhex(public_key), raw=True)
+                hex_key = PublicKey(bytes.fromhex(hex_key), raw=True)
             except Exception as e:
                 return "Invalid public key provided", 400
         
         try:
             # Verify that the public key is valid
-            public_key.verify()
+            hex_key.verify()
             return "The input public key is valid."
         except Exception as e:
             return "The input public key is not valid.", 400
