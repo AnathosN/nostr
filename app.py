@@ -73,15 +73,9 @@ def verify():
         if hex_key is None:
             return "No hex key provided", 400
         else:
-            try:
-                # Verify that the public key is valid
-                public_key = PublicKey(bytes.fromhex(hex_key), raw=True)
-                return f"The input public key is valid. {hex_key}"
-            except Exception as e:
                 if hex_key.startswith("npub"):
                     # Convert the public key from Bech32 to hex
                     hex_key = bech32.decode(hex_key)[1].hex()
-                    public_key = PublicKey(bytes.fromhex(hex_key), raw=True)
                     return f"The input public key is valid. {hex_key}"
                 else:
                     return "The input public key is not valid.", 400
