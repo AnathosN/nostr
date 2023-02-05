@@ -1,9 +1,10 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
 import json
 import os
-from secp256k1 import PublicKey
-import bech32
-import nostr
+import ssl
+import time
+from binascii import unhexlify
+from nostr.key import Bip39PrivateKey, PrivateKey, PublicKey
 
 app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
@@ -75,7 +76,8 @@ def verify():
         else:
             if public_key.startswith("npub"):
                 # Convert the public key from Bech32 to hex
-                hex_key = bech32.decode(public_key)[1].hex()
+                pk = PublicKey.from_npub(public_key)
+                hex_key = pk.public_key.hex()
                 return f"The input public key is valid. {hex_key}"
             else:
                 return f"The input public key is invalid. {public_key}"
