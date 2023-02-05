@@ -68,7 +68,7 @@ def register():
 @app.route("/verify", methods=["GET", "POST"])
 def verify():
     if request.method == "POST":
-        hex_key = request.form("hex_key")
+        hex_key = request.form.get("hex_key")
         if hex_key is None:
             return "No hex key provided", 400
         try:
