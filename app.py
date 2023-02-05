@@ -136,7 +136,10 @@ def delete():
             session["identifier"] = identifier
             session["hex_key"] = hex_key
             # Render the confirm deletion page
-            return redirect(url_for("confirm_delete")
+            return redirect(url_for("confirm_delete"))
+        else:
+            # Identifier not found
+            return "This identifier does not exist."
     return render_template("delete.html")
 
 @app.route("/confirm_delete", methods=["GET", "POST"])
