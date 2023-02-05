@@ -68,7 +68,7 @@ def register():
 @app.route("/verify", methods=["GET", "POST"])
 def verify():
     if request.method == "POST":
-        hex_key = request.form.get("hex_key")
+        hex_key = request.form("hex_key")
         if hex_key is None:
             return "No hex key provided", 400
         try:
@@ -82,7 +82,7 @@ def verify():
                 return f"Converted hex key in Bech32 format: {converted_key}"
             else:
                 return "The input hex key is not a valid Bech32 encoded key."
-    return "Bad request", 400
+    return render_template("verify.html")
 
 #display method
 @app.route("/display")
