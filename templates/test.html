@@ -8,22 +8,28 @@
   </head>
   <body>
     <div class="top-frame">
-      <img src="{{ url_for('static', filename='logo.png') }}" alt="Nostr logo" class="logo">
-      <button class="menu-btn" id="menu-btn"></button>
-      <div class="nav-items" id="nav-items">
-        <button class="close-btn" id="close-btn">&times;</button>
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Nostr Logo" class="logo">
+      <button class="menu-icon" onclick="toggleMenu()">&#9776;</button>
+      <nav class="nav-menu" id="nav-menu">
         <ul>
           <li><a href="{{ url_for('home') }}">HOME</a></li>
           <li><a href="{{ url_for('info') }}">INFO</a></li>
           <li><a href="{{ url_for('register') }}">REGISTER</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
     <div class="main-frame">
-      <div class="iframe-container">
-        <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
-      </div>
+      <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+      function toggleMenu() {
+        var menu = document.getElementById("nav-menu");
+        if (menu.style.display === "block") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "block";
+        }
+      }
+    </script>
   </body>
 </html>
