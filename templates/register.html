@@ -3,22 +3,75 @@
   <head>
     <meta name="description" content="Nostr is a platform utilizing cryptography and decentralized network technology to revolutionize social media. Join us in creating a new era of freedom and privacy online.">
     <meta name="keywords" content="Nostr, nostr, NIP-05, Bitcoin, Decentralized Social Media, Freedom, Privacy, cryptography, cypherpunks, identifier, public key, private key, key pair">
-    <title>NIP-05 Registration Form</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='logo_url.ico') }}">
     <style>
       body {
-       background-color: black;
-       color: white;
-       table {
-         margin: 0 auto;
-         border: 1px solid black;
-         border-collapse: collapse;
-       }
-
-       td {
-         border: 1px solid black;
-         padding: 10px;
-       }
+        background-color: black;
+        color: white;
+        align-items: center;
+        font-family: Arial, sans-serif;
       }
+
+      iframe {
+        height: 774px;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
+      
+      .top-frame {
+        height: 250px;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      table {
+        margin: 0 auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+      }
+
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: justify;
+      }
+
+      button {
+        width: 200px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      {% if version == 'mobile' %}
+        /* Add styles specific to the mobile version */
+        iframe {
+          height: 500px;
+        }
+
+        .top-frame {
+          height: 150px;
+        }
+
+        table {
+          font-size: 20px;
+        }
+
+        td {
+          padding: 5px;
+        }
+
+        button {
+          width: 200px;
+          height: 50px;
+          font-size: 20px;
+        }
+      {% endif %}
     </style>
   </head>
   <body>
