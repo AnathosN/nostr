@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Hamburger Menu Example</title>
     <meta name="description" content="Nostr is a platform utilizing cryptography and decentralized network technology to revolutionize social media. Join us in creating a new era of freedom and privacy online.">
     <meta name="keywords" content="Nostr, nostr, NIP-05, Bitcoin, Decentralized Social Media, Freedom, Privacy, cryptography, cypherpunks, identifier, public key, private key, key pair">
     <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='logo_url.ico') }}">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
-    <nav>
-      <div class="logo">Logo</div>
-      <div class="menu-icon">
-        <i class="fa fa-bars"></i>
-      </div>
-      <ul class="menu">
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-      </ul>
-    </nav>
-    
-    <script type="text/javascript">
-		function toggleMenu() {
-			var ul = document.querySelector('nav ul');
-			ul.classList.toggle('show');
-			var hamburger = document.querySelector('.hamburger button');
-			hamburger.classList.toggle('close');
-		}
-	</script>
+    <div class="top-frame">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Nostr Logo" class="logo">
+      <button class="menu-icon" onclick="toggleMenu()">&#9776;</button>
+      <nav class="nav-menu" id="nav-menu">
+        <ul>
+          <li><a href="{{ url_for('home') }}">HOME</a></li>
+          <li><a href="{{ url_for('info') }}">INFO</a></li>
+          <li><a href="{{ url_for('register') }}">REGISTER</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="main-frame">
+      <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
+    </div>
+    <script>
+      function toggleMenu() {
+        var menu = document.getElementById("nav-menu");
+        if (menu.style.display === "block") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "block";
+        }
+      }
+    </script>
   </body>
 </html>
-
