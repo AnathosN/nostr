@@ -21,7 +21,14 @@
       </ul>
     </nav>
     
-    <script src="script.js"></script>
+    <script type="text/javascript">
+		function toggleMenu() {
+			var ul = document.querySelector('nav ul');
+			ul.classList.toggle('show');
+			var hamburger = document.querySelector('.hamburger button');
+			hamburger.classList.toggle('close');
+		}
+	</script>
   </body>
 </html>
 
