@@ -1,77 +1,78 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: black;
+	color: white;
+	display: flex;
+	flex-direction: column;
 }
 
-.menu-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: black;
-  color: white;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
+.top-frame {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
 }
 
-.logo {
-  height: 50px;
+.menu-btn {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 1.5rem;
+	cursor: pointer;
+	margin-left: 1rem;
 }
 
-.burger-container {
-  display: flex;
-  align-items: center;
+.menu-btn div {
+	width: 1.5rem;
+	height: 0.25rem;
+	background-color: white;
 }
 
-.burger-input {
-  display: none;
+.left-frame {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 1rem;
+	width: 20%;
+	background-color: #222;
+	height: calc(100vh - 250px);
+	overflow-y: auto;
 }
 
-.burger-label {
-  display: block;
-  cursor: pointer;
-  padding: 5px;
+.menu-links {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
-.burger-icon {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background-color: white;
-  margin: 3px 0;
+.menu-links a {
+	color: white;
+	padding: 0.5rem;
+	text-decoration: none;
 }
 
-.burger-items-container {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  box-sizing: border-box;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.3s ease;
-  z-index: 2;
+.menu-links a:hover {
+	background-color: white;
+	color: black;
 }
 
-.burger-input:checked ~ .burger-items-container {
-  transform: scaleY(1);
+.menu-links.active {
+	width: auto;
 }
 
-.burger-item {
-  color: white;
-  text-decoration: none;
-  padding: 5px 0;
-  border-bottom: 1px solid white;
+.right-frame {
+	width: 80%;
+	height: calc(100vh - 250px);
+	padding: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.iframe-container {
-  margin-top: 70px;
-  height
+iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
