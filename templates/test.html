@@ -9,17 +9,21 @@
   <body>
     <div class="top-frame">
       <img src="{{ url_for('static', filename='logo.png') }}" alt="Nostr Logo" class="logo">
-      <button class="menu-icon" onclick="toggleMenu()">&#9776;</button>
-      <nav class="nav-menu" id="nav-menu">
-        <ul>
-          <li><a href="{{ url_for('home') }}">HOME</a></li>
-          <li><a href="{{ url_for('info') }}">INFO</a></li>
-          <li><a href="{{ url_for('register') }}">REGISTER</a></li>
-        </ul>
-      </nav>
     </div>
     <div class="main-frame">
-      <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
+      <div class="left">
+        <button class="menu-icon" onclick="toggleMenu()">&#9776;</button>
+          <nav class="nav-menu" id="nav-menu">
+            <ul>
+              <li><a href="{{ url_for('home') }}">HOME</a></li>
+              <li><a href="{{ url_for('info') }}">INFO</a></li>
+              <li><a href="{{ url_for('register') }}">REGISTER</a></li>
+            </ul>
+          </nav>
+      </div>
+      <div class="right">
+        <iframe name="right-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
+      </div>
     </div>
     <script>
       function toggleMenu() {
