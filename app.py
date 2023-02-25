@@ -11,7 +11,7 @@ app.secret_key = "N05TRD4MU5"
 
 #test page
 @app.route("/test")
-def index():
+def test():
     user_agent = request.user_agent.string
     version = 'desktop'
     if 'mobile' in user_agent.lower():
