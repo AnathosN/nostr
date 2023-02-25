@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="Nostr is a platform utilizing cryptography and decentralized network technology to revolutionize social media. Join us in creating a new era of freedom and privacy online.">
+    <meta name="keywords" content="Nostr, nostr, NIP-05, Bitcoin, Decentralized Social Media, Freedom, Privacy, cryptography, cypherpunks, identifier, public key, private key, key pair">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='logo_url.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nostr</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" id="menu-icon">&#9776;</label>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('home') }}">HOME</a></li>
+        <li><a href="{{ url_for('info') }}">INFO</a></li>
+        <li><a href="{{ url_for('register') }}">REGISTER</a></li>
+      </ul>
+    </nav>
+    <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
+  </body>
+</html>
