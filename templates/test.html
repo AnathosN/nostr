@@ -8,23 +8,22 @@
   </head>
   <body>
     <div class="top-frame">
-      <center>
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="Nostr logo" class="logo" />
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div class="menu">
-          <a href="{{ url_for('home') }}">HOME</a>
-          <a href="{{ url_for('info') }}">INFO</a>
-          <a href="{{ url_for('register') }}">REGISTER</a>
-        </div>
-      </center>
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Nostr logo" class="logo">
+      <button class="menu-btn" id="menu-btn"></button>
+      <div class="nav-items" id="nav-items">
+        <button class="close-btn" id="close-btn">&times;</button>
+        <ul>
+          <li><a href="{{ url_for('home') }}">HOME</a></li>
+          <li><a href="{{ url_for('info') }}">INFO</a></li>
+          <li><a href="{{ url_for('register') }}">REGISTER</a></li>
+        </ul>
+      </div>
     </div>
-    <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
-
-    <script>
-      function toggleMenu() {
-        const menu = document.querySelector('.menu');
-        menu.classList.toggle('open');
-      }
-    </script>
+    <div class="main-frame">
+      <div class="iframe-container">
+        <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
+      </div>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>
