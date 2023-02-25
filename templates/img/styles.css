@@ -1,78 +1,83 @@
 body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
-	background-color: black;
-	color: white;
-	display: flex;
-	flex-direction: column;
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
 }
 
-.top-frame {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 1rem;
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.menu-btn {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 1.5rem;
-	cursor: pointer;
-	margin-left: 1rem;
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
 }
 
-.menu-btn div {
-	width: 1.5rem;
-	height: 0.25rem;
-	background-color: white;
+.logo {
+  width: 150px;
+  height: 150px;
 }
 
-.left-frame {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	padding: 1rem;
-	width: 20%;
-	background-color: #222;
-	height: calc(100vh - 250px);
-	overflow-y: auto;
+.menu-button {
+  margin-left: auto;
+  font-size: 20px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.menu-links {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+.menu {
+  position: absolute;
+  top: 80px;
+  left: -300px;
+  width: 300px;
+  height: calc(100vh - 80px);
+  background-color: #333;
+  transition: transform 0.3s ease-in-out;
 }
 
-.menu-links a {
-	color: white;
-	padding: 0.5rem;
-	text-decoration: none;
+.close-button {
+  font-size: 20px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
-.menu-links a:hover {
-	background-color: white;
-	color: black;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.menu-links.active {
-	width: auto;
+li {
+  margin: 20px;
 }
 
-.right-frame {
-	width: 80%;
-	height: calc(100vh - 250px);
-	padding: 1rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 iframe {
-	width: 100%;
-	height: 100%;
-	border: none;
+  width: 100%;
+  height: 100%;
 }
