@@ -1,0 +1,54 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  display: none;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+#menu-icon {
+  display: block;
+  font-size: 2em;
+  cursor: pointer;
+  padding: 0.5em;
+  position: fixed;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+#menu-toggle:checked + nav {
+  display: block;
+  position: fixed;
+  top: 3em;
+  right: 0.5em;
+  background-color: black;
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 2px solid white;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin-bottom: 0.5em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+nav a:hover {
+  color: #ddd;
+}
