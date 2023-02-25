@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <title>Hamburger Menu Example</title>
     <meta name="description" content="Nostr is a platform utilizing cryptography and decentralized network technology to revolutionize social media. Join us in creating a new era of freedom and privacy online.">
     <meta name="keywords" content="Nostr, nostr, NIP-05, Bitcoin, Decentralized Social Media, Freedom, Privacy, cryptography, cypherpunks, identifier, public key, private key, key pair">
     <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='logo_url.ico') }}">
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <img src="{{ url_for('static', filename='logo.png') }}" class="logo" />
-        <button class="menu-button" onclick="toggleMenu()">☰ MENU</button>
+    <nav>
+      <div class="logo">Logo</div>
+      <div class="menu-icon">
+        <i class="fa fa-bars"></i>
       </div>
-      <div class="menu" id="menu">
-        <button class="close-button" onclick="toggleMenu()">✖</button>
-        <ul>
-          <li><a href="{{ url_for('home') }}">HOME</a></li>
-          <li><a href="{{ url_for('info') }}">INFO</a></li>
-          <li><a href="{{ url_for('register') }}">REGISTER</a></li>
-        </ul>
-      </div>
-      <div class="main">
-        <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
-      </div>
-    </div>
+      <ul class="menu">
+        <li><a href="#">Item 1</a></li>
+        <li><a href="#">Item 2</a></li>
+        <li><a href="#">Item 3</a></li>
+      </ul>
+    </nav>
+    
     <script src="script.js"></script>
   </body>
 </html>
+
