@@ -9,7 +9,7 @@ from nostr.key import PublicKey
 app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
 
-#root page
+#test page
 @app.route("/test")
 def index():
     user_agent = request.user_agent.string
