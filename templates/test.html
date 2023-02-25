@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="description" content="Nostr is a platform utilizing cryptography and decentralized network technology to revolutionize social media. Join us in creating a new era of freedom and privacy online.">
-	<meta name="keywords" content="Nostr, nostr, NIP-05, Bitcoin, Decentralized Social Media, Freedom, Privacy, cryptography, cypherpunks, identifier, public key, private key, key pair">
-	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='logo_url.ico') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-	<title>Nostr</title>
-</head>
-<body>
-	<div class="top-frame">
-		<img src="{{ url_for('static', filename='logo.png') }}" width="250" height="250" />
-		<div class="menu-btn" onclick="toggleMenu()">
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-	</div>
-
-	<div class="left-frame">
-		<div class="menu-links">
-			<a href="{{ url_for('home') }}">HOME</a>
-			<a href="{{ url_for('info') }}">INFO</a>
-			<a href="{{ url_for('register') }}">REGISTER</a>
-		</div>
-	</div>
-
-	<div class="right-frame">
-		<iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
-	</div>
-
-	<script>
-		function toggleMenu() {
-			var menuLinks = document.querySelector(".menu-links");
-			menuLinks.classList.toggle("active");
-		}
-	</script>
-</body>
+  <head>
+    <meta name="description" content="Nostr is a platform utilizing cryptography and decentralized network technology to revolutionize social media. Join us in creating a new era of freedom and privacy online.">
+    <meta name="keywords" content="Nostr, nostr, NIP-05, Bitcoin, Decentralized Social Media, Freedom, Privacy, cryptography, cypherpunks, identifier, public key, private key, key pair">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='logo_url.ico') }}">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="{{ url_for('static', filename='logo.png') }}" class="logo" />
+        <button class="menu-button" onclick="toggleMenu()">☰ MENU</button>
+      </div>
+      <div class="menu" id="menu">
+        <button class="close-button" onclick="toggleMenu()">✖</button>
+        <ul>
+          <li><a href="{{ url_for('home') }}">HOME</a></li>
+          <li><a href="{{ url_for('info') }}">INFO</a></li>
+          <li><a href="{{ url_for('register') }}">REGISTER</a></li>
+        </ul>
+      </div>
+      <div class="main">
+        <iframe name="bottom-frame" frameborder="0" src="{{ url_for('home') }}"></iframe>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
