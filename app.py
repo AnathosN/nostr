@@ -10,6 +10,15 @@ app = Flask(__name__, static_folder='templates/img')
 app.secret_key = "N05TRD4MU5"
 
 #root page
+@app.route("/test")
+def index():
+    user_agent = request.user_agent.string
+    version = 'desktop'
+    if 'mobile' in user_agent.lower():
+        version = 'mobile'
+    return render_template("test.html", version=version)
+
+#root page
 @app.route("/")
 def index():
     user_agent = request.user_agent.string
